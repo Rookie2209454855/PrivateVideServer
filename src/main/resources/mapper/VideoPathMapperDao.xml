@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soecode.lyf.dao.VidePathDao">
+  <sql id="videPath">
+    id,name,type,file_path as filePath,file_ip fileIp
+  </sql>
+
+  <!--初始化视频进入数据库-->
+  <insert id="initPath">
+    INSERT IGNORE  INTO vide_path(name,type,file_path,file_ip)
+    VALUES
+    <foreach collection="videPaths" item="videPath" separator=",">
+      (#{videPath.name},#{videPath.type},#{videPath.filePath},#{videPath.fileIp})
+    </foreach>
+  </insert>
+
+  <select id="findvidePath" resultType="com.soecode.lyf.entity.VidePathEntity">
+    SELECT <include refid="videPath" />
+    FROM vide_path
+    WHERE 1=1
+    <if test="videPaths.id!=null">and id=${videPaths.id}</if>
+    <if test="videPaths.name!=null and videPaths.name!=''">and name like concat(concat('%',#{videPaths.name}),'%')</if>
+    <if test="videPaths.type!=null">and type=#{videPaths.type}</if>
+    <if test="videPaths.filePath!=null">and file_path=${videPaths.filePath}</if>
+    <if test="videPaths.pageNo!=null and videPaths.pageSize!=null">
+      LIMIT #{videPaths.pageNo},#{videPaths.pageSize}
+    </if>
+  </select>
+
+  <select id="findvidePathCount" resultType="Integer">
+    SELECT count(1)
+    FROM vide_path
+    WHERE 1=1
+    <if test="videPaths.id!=null">and id=${videPaths.id}</if>
+    <if test="videPaths.name!=null and videPaths.name!=''">and name like concat(concat('%',#{videPaths.name}),'%')</if>
+    <if test="videPaths.type!=null">and type=#{videPaths.type}</if>
+    <if test="videPaths.filePath!=null">and file_path=${videPaths.filePath}</if>
+  </select>
+
+  <delete id="delVideoForId">
+    DELETE FROM vide_path WHERE id=#{vid}
+  </delete>
+
+</mapper>
