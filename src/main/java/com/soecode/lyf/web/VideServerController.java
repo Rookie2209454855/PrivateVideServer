@@ -63,7 +63,7 @@ public class VideServerController {
     @RequestMapping(value="/Disks",method= RequestMethod.GET)
     @ResponseBody
     public List<Disk> resultDisks(){
-        List<Disk> diskList=new ArrayList<>();
+        List<Disk> diskList=new ArrayList<Disk>();
         FileSystemView fsv = FileSystemView.getFileSystemView();
         // 列出所有windows 磁盘
         File[] fs = File.listRoots();
@@ -87,7 +87,7 @@ public class VideServerController {
     public PageList<Vide> showLink(String name, Integer pageNo, Integer pageSize,String type){
         List<Vide> videList=iVidePathService.findvidePath(new Vide(name,type,(pageNo-1)*pageSize,pageSize));
         Integer count=iVidePathService.findvidePathCount(new Vide(name,type));
-        return new PageList<>(count,pageSize,videList);
+        return new PageList<Vide>(count,pageSize,videList);
 
     }
 
