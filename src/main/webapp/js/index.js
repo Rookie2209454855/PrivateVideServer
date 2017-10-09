@@ -158,10 +158,7 @@ function dowloadVideo(videoId) {
 		url:"/ssm/dowloadVideo",
 		success:function(data){
 			$("#myModalLabel").append("<p>data[1]</p>");
-
 			$("#links").append("<a href='data[0]' download='data[1]'>下载</a>");
-			console.log(data[0]);
-			console.log(data[1]);
 		},
 		error:function(){
 			alert("删除失败，请联系管理员!");
