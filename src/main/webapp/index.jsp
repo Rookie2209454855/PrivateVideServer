@@ -7,9 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.tmpl.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-paginator.js"></script>
@@ -40,25 +39,57 @@
             <li onclick="addActive(this);"><a href="#">小说</a></li>
         </ul>
 
-        <div id="videLink">
-
-        </div>
+        <table class="table table-bordered table-hover table-condensed table-striped text-center" id="j-table-1">
+            <thead>
+            <tr>
+                <th>视频名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="videLink">
+            </tbody>
+        </table>
 
 
         <ul class="pagination">
 
         </ul>
 
+
+
     </div>
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+
+                    </h4>
+                </div>
+                <div class="modal-body" id="links">
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
 </div>
 <script id="videLinkTemplate" type="text/x-jquery-tmpl">
 {{each(i,item) links}}
-    <div class="list-group-item ">
-         <a href="${pageContext.request.contextPath}/showVideo?id={{= item.id}}" >
-             <span class="text-center">{{= item.name}}</span>
-         </a>
-         <button type="button" class="btn btn-warning btn-sm pull-right" onclick="delVideo(this);" value="{{= item.id}}">删除</button>
-    </div>
+    <tr>
+        <td>
+            <a href="${pageContext.request.contextPath}/showVideo?id={{= item.id}}" >
+            <span class="text-center">{{= item.name}}</span>
+            </a>
+        </td>
+ 		<td>
+           <button type="button" class="btn btn-info btn-xs j-set" onclick="dowloadVideo({{= item.id}});" data-toggle="modal" data-target="#myModal">下载</button>
+		   <button type="button" class="btn btn-info btn-xs j-set" onclick="delVideo(this);" value="{{= item.id}}">删除</button>
+        </td>
+    </tr>
 {{/each}}
 </script>
 <script id="disksTemplate" type="text/x-jquery-tmpl">

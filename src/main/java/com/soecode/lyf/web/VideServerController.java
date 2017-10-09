@@ -110,6 +110,25 @@ public class VideServerController {
     }
 
     /***
+     * 跳转播放视频
+     * @param model
+     * @param id
+     * @return
+     * @throws UnknownHostException
+     */
+    @RequestMapping(value = "/dowloadVideo",method =RequestMethod.GET)
+    @ResponseBody
+    public String[] dowloadVideo(Model model,Long id)throws UnknownHostException{
+        System.out.print("sss");
+        List<Vide> videList=iVidePathService.findvidePath(new Vide(id));
+        Vide vide=videList.get(0);
+        String uri=vide.getFileIp()+":8081/"+vide.getFilePath().replace("\\","/");
+        /*model.addAttribute("uri",uri);
+        model.addAttribute("videoName",videList.get(0).getName());*/
+        return new String[]{uri,videList.get(0).getName()};
+    }
+
+    /***
      * 跳转t图片页
      * @return
      * @throws UnknownHostException
