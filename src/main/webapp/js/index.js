@@ -157,8 +157,13 @@ function dowloadVideo(videoId) {
 		},
 		url:"/ssm/dowloadVideo",
 		success:function(data){
-			$("#myModalLabel").append("<p>data[1]</p>");
-			$("#links").append("<a href='data[0]' download='data[1]'>下载</a>");
+			$("#myModalLabel").empty();
+			$("#myModalLabel").append("<p>"+data[1]+"</p>");
+			$("#links").empty();
+			$("#links").append("<a href="+data[0]+" download="+data[1]+">下载</a>");
+			console.log("<p>"+data[1]+"</p>");
+			console.log("<a href="+data[0]+" download="+data[1]+">下载</a>");
+			//$("#myModal").modal("show");
 		},
 		error:function(){
 			alert("删除失败，请联系管理员!");

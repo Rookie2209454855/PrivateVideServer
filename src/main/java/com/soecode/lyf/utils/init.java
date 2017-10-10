@@ -18,12 +18,14 @@ public  class init {
      static List<Vide> list=new LinkedList<Vide>();//创建list集合，用来暂时储存
      static Map<String,String> videoType=new HashMap<String,String>();
      static Map<String,String> reMap(){
-        //videoType.put("avi","avi");
-        //videoType.put("AVI","avi");
+        videoType.put("avi","avi");
+        videoType.put("AVI","avi");
         videoType.put("MP4","mp4");
         videoType.put("mp4","mp4");
-        //videoType.put("rmvb","rmvb");
-        //videoType.put("RMVB","rmvb");
+        videoType.put("rmvb","rmvb");
+        videoType.put("RMVB","rmvb");
+        videoType.put("MKV","mkv");
+        videoType.put("mkv","mkv");
         videoType.put("jpg","jpg");
         videoType.put("JPG","jpg");
         //videoType.put("bmp","bmp");

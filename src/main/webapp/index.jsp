@@ -7,9 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.tmpl.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-paginator.js"></script>
 <head>
@@ -19,10 +19,15 @@
     <div  class="container" >
         <h1  class="text-center">welcome</h1>
 
-        <div class="input-group">
-            <select class="form-control" id="disks"></select>
-            <span class="input-group-addon" id="scanning">扫描</span>
+        <div>
+            <div class="input-group">
+                <span class="input-group-addon" >筛选:</span>
+                <select class="form-control" id="disks" ></select>
+                <span  class="input-group-addon btn btn-default" id="scanning">确定</span>
+            </div>
+
         </div>
+
 
         <div class="input-group">
             <span class="input-group-addon">搜索</span>
@@ -59,7 +64,7 @@
 
     </div>
 
-    <!-- 模态框（Modal） -->
+    <!-- 视频下载模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -74,9 +79,14 @@
                 <div class="modal-body" id="links">
 
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
-</div>
+    </div>
+
 <script id="videLinkTemplate" type="text/x-jquery-tmpl">
 {{each(i,item) links}}
     <tr>
