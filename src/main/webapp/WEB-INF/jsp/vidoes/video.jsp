@@ -10,21 +10,15 @@
 <head>
     <meta charset="utf-8">
     <title>播放器</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-    <link href="" rel="stylesheet">
-    <style type="text/css">
-        #modelView{background-color:#DDDDDD;z-index:0;opacity:0.7;height: 100%;width: 100%;position: relative;}
-        .playvideo{padding-top: auto;z-index: 9999;position: relative;}
-        .zy_media{z-index: 999999999}
+    <link href="${pageContext.request.contextPath}/css/video-js.css" rel="stylesheet">
+    <style>
+        body{background-color: #191919}
+        .m{ width: 740px; height: 400px; margin-left: auto; margin-right: auto; margin-top: 100px; }
     </style>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/zy.media.min.css">
 </head>
 <body onmousewheel="return false;">
 
-<div class="playvideo">
+<%--<div class="playvideo">
     <div class="zy_media">
         <video id="audio_id" data-config='{"mediaTitle": "播放视频--${videoName}"}'>
             <source src="${uri}" type="video/mp4">
@@ -32,21 +26,27 @@
         </video>
     </div>
     <div id="modelView">&nbsp;</div>
+</div>--%>
+
+<div class="m">
+    <video id="audio_id" class="video-js" controls preload="auto" width="740" height="400"
+           poster="" data-setup="{}">
+        <source src="${uri}" type="video/mp4">
+        <source src="${uri}" type="video/webm">
+        <source src="${uri}" type="video/ogg">
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video>
+    <script src=${pageContext.request.contextPath}/js/video.min.js"></script>
+    <script type="text/javascript">
+        var myPlayer = videojs('my-video');
+        videojs("my-video").ready(function(){
+            var myPlayer = this;
+            myPlayer.play();
+        });
+    </script>
 </div>
-
-<script src="${pageContext.request.contextPath}/js/zy.media.min.js"></script>
-<script>
-    //document.documentElement.style.overflow='hidden';
-    document.body.style.overflow='hidden';
-    zymedia('video',{autoplay: true});
-    var screenheight = window.screen.height/2;
-    $("#modelView").width(window.screen.width);
-    $("#modelView").height(window.screen.height);
-    var videoheight = $(".zy_media").height()/2;
-    var padding_top = screenheight-videoheight;
-    $(".playvideo").css({"top":padding_top});
-    $("#modelView").css({"margin-top":-1*(padding_top+$(".zy_media").height())});
-
-</script>
 </body>
 </html>

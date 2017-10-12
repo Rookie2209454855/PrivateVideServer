@@ -160,10 +160,8 @@ function dowloadVideo(videoId) {
 			$("#myModalLabel").empty();
 			$("#myModalLabel").append("<p>"+data[1]+"</p>");
 			$("#links").empty();
-			$("#links").append("<a href="+data[0]+" download="+data[1]+">下载</a>");
-			console.log("<p>"+data[1]+"</p>");
-			console.log("<a href="+data[0]+" download="+data[1]+">下载</a>");
-			//$("#myModal").modal("show");
+            var links=encodeURI(data[0]);
+			$("#links").append("<a href="+links+" download="+data[1]+">下载</a>");
 		},
 		error:function(){
 			alert("删除失败，请联系管理员!");
