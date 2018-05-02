@@ -6,6 +6,7 @@ import com.soecode.lyf.dto.Vide;
 import com.soecode.lyf.service.IVidePathService;
 import com.soecode.lyf.utils.PageList;
 import com.soecode.lyf.utils.init;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by fengtiepeng on 2017/7/14.
@@ -30,6 +32,9 @@ public class VideServerController {
 
     @Autowired
     private IVidePathService iVidePathService;
+
+    private static final org.slf4j.Logger logger = LoggerFactory
+            .getLogger(VideServerController.class);
 
 
     /***
@@ -51,7 +56,8 @@ public class VideServerController {
             System.out.println("程序一共执行了"+(endTime-startTime)+"毫秒!");
             return count;
         }catch (Exception e){
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
+            //e.printStackTrace();
             return 0;
         }
     }
@@ -100,7 +106,7 @@ public class VideServerController {
      */
     @RequestMapping(value = "/showVideo",method =RequestMethod.GET)
     public String showVideo(Model model,Long id)throws UnknownHostException{
-        System.out.print("sss");
+       // System.out.print("sss");
         List<Vide> videList=iVidePathService.findvidePath(new Vide(id));
         Vide vide=videList.get(0);
         String uri=vide.getFileIp()+":8081/"+vide.getFilePath().replace("\\","/");
@@ -110,7 +116,7 @@ public class VideServerController {
     }
 
     /***
-     * 跳转播放视频
+     * 下载选中视频
      * @param model
      * @param id
      * @return
@@ -119,7 +125,7 @@ public class VideServerController {
     @RequestMapping(value = "/dowloadVideo",method =RequestMethod.GET)
     @ResponseBody
     public String[] dowloadVideo(Model model,Long id)throws UnknownHostException{
-        System.out.print("sss");
+        //System.out.print("sss");
         List<Vide> videList=iVidePathService.findvidePath(new Vide(id));
         Vide vide=videList.get(0);
         String uri=vide.getFileIp()+":8081/"+vide.getFilePath().replace("\\","/");

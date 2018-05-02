@@ -5,6 +5,7 @@ import org.junit.Test;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.Properties;
 
 /**
  * Created by fengtiepeng on 2017/7/21.
@@ -43,4 +44,5 @@ public class seacherDisk {
             System.out.println("剩余" + FormetFileSize(fs[i].getFreeSpace()));
         }
     }
+
 }

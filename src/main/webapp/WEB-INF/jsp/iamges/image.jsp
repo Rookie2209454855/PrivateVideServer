@@ -8,11 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/js/layui/css/layui.css">
 <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.tmpl.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-paginator.js"></script>
+<script  src="${pageContext.request.contextPath}/js/layui/layui.js"></script>
 <head>
     <title>图片比列表</title>
 </head>
@@ -44,9 +46,7 @@
         </div>
 
 
-        <ul class="pagination">
-
-        </ul>
+        <div id="fenye"></div>
 
     </div>
 </div>
@@ -71,6 +71,7 @@
             actv.setAttribute("class","active");
         }
 </script>
+<script  charset="utf-8"  src="${pageContext.request.contextPath}/js/utils.js"></script>
 <script  charset="utf-8"  src="${pageContext.request.contextPath}/js/imagesLinks.js"></script>
 </body>
 </html>

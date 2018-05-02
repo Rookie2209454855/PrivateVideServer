@@ -4,6 +4,9 @@ $(document).ready(function(){
 	showDisk();
 	showLink();
 
+    /***
+	 * 初始化
+     */
 	function showLink() {
 		$.ajax({
 			type:'GET',
@@ -17,13 +20,37 @@ $(document).ready(function(){
 				console.log(data);
 				$("#videLink").empty();
 				$("#videLinkTemplate").tmpl({links:data.data}).appendTo("#videLink");
-				pageing(data.record);
+                fenye("fenye",data,showPage);
 			},
 			error:function(){
 				alert("加载视频列表失败");
 			}
 		})
 	}
+
+    /***
+	 * 回调展示页
+     * @param obj
+     */
+    function showPage(obj) {
+        $.ajax({
+            type:'GET',
+            data:{
+                "pageNo":obj.curr,
+                "pageSize":obj.limit,
+                "type":"mp4"
+            },
+            url:"/ssm/showLink",
+            success:function(data){
+                console.log(data);
+                $("#videLink").empty();
+                $("#videLinkTemplate").tmpl({links:data.data}).appendTo("#videLink");
+            },
+            error:function(){
+                showalert("加载视频列表失败");
+            }
+        })
+    }
 
 	function showDisk() {
 		$.ajax({
@@ -36,7 +63,7 @@ $(document).ready(function(){
 				$("#disksTemplate").tmpl({_disks:data}).appendTo("#disks");
 			},
 			error:function(){
-				alert("加载磁盘列表失败");
+                showalert("加载磁盘列表失败");
 			}
 		})
 	}
@@ -58,7 +85,7 @@ $(document).ready(function(){
 					showLink();
 				},
 				error:function(){
-					alert("添加磁盘文件失败");
+                    showalert("添加磁盘文件失败");
 				}
 			})
 		}
@@ -86,7 +113,7 @@ $(document).ready(function(){
 				pageing(data.record);
 			},
 			error:function(){
-				alert("加载视频列表失败");
+                showalert("加载视频列表失败");
 			}
 		})
 	});
@@ -124,7 +151,13 @@ $(document).ready(function(){
 		}
 	};
 
+
+
+
 })
+
+
+
 function delVideo(video) {
 	console.log(video.value);
 	$.ajax({
@@ -143,7 +176,7 @@ function delVideo(video) {
 			//showLink();
 		},
 		error:function(){
-			alert("删除失败，请联系管理员!");
+            showalert("删除失败，请联系管理员!");
 		}
 	})
 }
@@ -152,9 +185,7 @@ function dowloadVideo(videoId) {
 	console.log(videoId);
 	$.ajax({
 		type:'GET',
-		data:{
-			"id":videoId
-		},
+		data:{"id":videoId},
 		url:"/ssm/dowloadVideo",
 		success:function(data){
 			$("#myModalLabel").empty();
@@ -164,7 +195,7 @@ function dowloadVideo(videoId) {
 			$("#links").append("<a href="+links+" download="+data[1]+">下载</a>");
 		},
 		error:function(){
-			alert("删除失败，请联系管理员!");
+            showalert("下载失败");
 		}
 	})
 }

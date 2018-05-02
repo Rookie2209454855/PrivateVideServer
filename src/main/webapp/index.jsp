@@ -9,9 +9,11 @@
 <html>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/js/layui/css/layui.css">
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.tmpl.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-paginator.js"></script>
+<script  src="${pageContext.request.contextPath}/js/layui/layui.js"></script>
 <head>
     <title>欢迎访问视频服务</title>
 </head>
@@ -55,11 +57,7 @@
             </tbody>
         </table>
 
-
-        <ul class="pagination">
-
-        </ul>
-
+        <div id="fenye"></div>
 
 
     </div>
@@ -115,6 +113,7 @@
             actv.setAttribute("class","active");
         }
 </script>
+<script  charset="utf-8"  src="${pageContext.request.contextPath}/js/utils.js"></script>
 <script  charset="utf-8"  src="${pageContext.request.contextPath}/js/index.js"></script>
 </body>
 </html>
