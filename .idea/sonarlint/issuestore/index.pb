@@ -15,3 +15,7 @@
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 >
 .gitattributes,2\4\24139dae656713ba861751fb2c2ac38839349a7a
+\
+,src\main\webapp\WEB-INF\jsp\vidoes\video.jsp,2\9\2965ac718c287d650ceac291eb0102d1d2dd36e5
+K
+src\main\webapp\js\index.js,8\8\8867c94451b2096bb3f03a847a82663fcc2e77bd

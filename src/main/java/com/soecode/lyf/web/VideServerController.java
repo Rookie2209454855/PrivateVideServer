@@ -1,6 +1,7 @@
 package com.soecode.lyf.web;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.soecode.lyf.dto.Disk;
 import com.soecode.lyf.dto.Vide;
 import com.soecode.lyf.service.IVidePathService;
@@ -10,9 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
@@ -20,12 +19,12 @@ import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Created by fengtiepeng on 2017/7/14.
  */
-
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
 @Controller
 public class VideServerController {
 
@@ -33,9 +32,9 @@ public class VideServerController {
     @Autowired
     private IVidePathService iVidePathService;
 
+
     private static final org.slf4j.Logger logger = LoggerFactory
             .getLogger(VideServerController.class);
-
 
     /***
      * 初始化磁盘文件
@@ -99,24 +98,27 @@ public class VideServerController {
 
     /***
      * 跳转播放视频
-     * @param model
      * @param id
      * @return
      * @throws UnknownHostException
      */
     @RequestMapping(value = "/showVideo",method =RequestMethod.GET)
-    public String showVideo(Model model,Long id)throws UnknownHostException{
-       // System.out.print("sss");
+    @ResponseBody
+    public JSONObject showVideo(Long id)throws UnknownHostException{
+        JSONObject jsonObject=new JSONObject();
+        System.out.print("sss");
         List<Vide> videList=iVidePathService.findvidePath(new Vide(id));
         Vide vide=videList.get(0);
         String uri=vide.getFileIp()+":8081/"+vide.getFilePath().replace("\\","/");
-        model.addAttribute("uri",uri);
-        model.addAttribute("videoName",videList.get(0).getName());
-        return "vidoes/video";
+        jsonObject.put("uri",uri);
+        jsonObject.put("videoName",videList.get(0).getName());
+        /*model.addAttribute("uri",uri);
+        model.addAttribute("videoName",videList.get(0).getName());*/
+        return jsonObject;
     }
 
     /***
-     * 下载选中视频
+     * 跳转播放视频
      * @param model
      * @param id
      * @return
@@ -125,7 +127,7 @@ public class VideServerController {
     @RequestMapping(value = "/dowloadVideo",method =RequestMethod.GET)
     @ResponseBody
     public String[] dowloadVideo(Model model,Long id)throws UnknownHostException{
-        //System.out.print("sss");
+        System.out.print("sss");
         List<Vide> videList=iVidePathService.findvidePath(new Vide(id));
         Vide vide=videList.get(0);
         String uri=vide.getFileIp()+":8081/"+vide.getFilePath().replace("\\","/");

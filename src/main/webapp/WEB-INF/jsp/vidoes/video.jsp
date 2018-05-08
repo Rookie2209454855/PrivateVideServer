@@ -39,10 +39,10 @@
             <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
         </p>
     </video>
-    <script src="${pageContext.request.contextPath}/js/video.min.js"></script>
+    <script src=${pageContext.request.contextPath}/js/video.min.js"></script>
     <script type="text/javascript">
-        var myPlayer = videojs('audio_id');
-        myPlayer.ready(function(){
+        var myPlayer = videojs('my-video');
+        videojs("my-video").ready(function(){
             var myPlayer = this;
             myPlayer.play();
         });
