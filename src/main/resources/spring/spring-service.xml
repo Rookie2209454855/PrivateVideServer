@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:websocket="http://www.springframework.org/schema/websocket"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/tx
-	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 	<!-- 扫描service包下所有使用注解的类型 -->
 	<context:component-scan base-package="com.soecode.lyf.service" />
 
@@ -21,4 +22,12 @@
 
 	<!-- 配置基于注解的声明式事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!--配置 WebSocket-->
+	<websocket:handlers>
+		<websocket:mapping path="/myHandler" handler="myHandler"/>
+	</websocket:handlers>
+
+	<bean id="myHandler" class="com.soecode.lyf.service.MyHandler"/>
+
 </beans>
