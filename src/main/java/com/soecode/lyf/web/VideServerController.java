@@ -1,6 +1,7 @@
 package com.soecode.lyf.web;
 
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.soecode.lyf.dto.Disk;
 import com.soecode.lyf.dto.Vide;
@@ -77,6 +78,28 @@ public class VideServerController {
             diskList.add(new Disk(fs[i].toString(),fsv.getSystemDisplayName(fs[i])));
         }
         return diskList;
+    }
+
+    /***
+     * 返回所有盘符
+     * @return
+     */
+    @RequestMapping(value="/DisksMobile",method= RequestMethod.GET)
+    @ResponseBody
+    public JSONArray resultDiskMobile(){
+        JSONArray jsonArray=new JSONArray();
+        JSONObject jsonObject;
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        // 列出所有windows 磁盘
+        File[] fs = File.listRoots();
+        // 显示磁盘卷标
+        for (int i = 0; i < fs.length; i++) {
+            jsonObject=new JSONObject();
+            jsonObject.put("value",fs[i].toString());
+            jsonObject.put("text",fsv.getSystemDisplayName(fs[i]));
+            jsonArray.add(jsonObject);
+        }
+        return jsonArray;
     }
 
 

@@ -87,6 +87,14 @@
 			<artifactId>spring-context</artifactId>
 			<version>4.3.12.RELEASE</version>
 		</dependency>
+
+		<!--websocket服务器推-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>4.3.12.RELEASE</version>
+		</dependency>
+
 		<!-- 2)Spring DAO层 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
