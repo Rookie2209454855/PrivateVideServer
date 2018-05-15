@@ -27,4 +27,13 @@ public interface VidePathDao {
      * @return
      */
     Integer delVideoForId(@Param("vid") Long vid);
+
+
+    /***
+     * 获取下一部视频
+     * @param vid
+     * @return
+     */
+    VidePathEntity findvideNextPath(@Param("vid") Long vid);
+
 }

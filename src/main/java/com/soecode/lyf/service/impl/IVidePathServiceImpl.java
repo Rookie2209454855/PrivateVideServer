@@ -73,4 +73,10 @@ public class IVidePathServiceImpl implements IVidePathService {
         return videPathDao.delVideoForId(vid);
     };
 
+
+    public Vide findvideNextPath(Long vid){
+        Vide vide=new Vide();
+        BeanUtils.copyProperties(videPathDao.findvideNextPath(vid),vide);
+        return vide;
+    }
 }

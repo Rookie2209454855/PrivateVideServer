@@ -32,4 +32,11 @@ public interface IVidePathService {
      * @return
      */
     Integer delVideoPath(Long vid);
+
+    /***
+     * 获取下一视频
+     * @param vid
+     * @return
+     */
+    Vide findvideNextPath(Long vid);
 }

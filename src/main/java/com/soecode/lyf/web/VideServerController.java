@@ -141,7 +141,27 @@ public class VideServerController {
     }
 
     /***
-     * 跳转播放视频
+     * 跳转下部视频
+     * @param id
+     * @return
+     * @throws UnknownHostException
+     */
+    @RequestMapping(value = "/showNextVideo",method =RequestMethod.GET)
+    @ResponseBody
+    public JSONObject showNextVideo(Long id)throws UnknownHostException{
+        JSONObject jsonObject=new JSONObject();
+        Vide vide=iVidePathService.findvideNextPath(id);
+        String uri=vide.getFileIp()+":8081/"+vide.getFilePath().replace("\\","/");
+        jsonObject.put("id",vide.getId());
+        jsonObject.put("uri",uri);
+        jsonObject.put("videoName",vide.getName());
+        /*model.addAttribute("uri",uri);
+        model.addAttribute("videoName",videList.get(0).getName());*/
+        return jsonObject;
+    }
+
+    /***
+     * 跳转下载视频
      * @param model
      * @param id
      * @return

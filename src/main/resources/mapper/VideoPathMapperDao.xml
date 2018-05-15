@@ -37,6 +37,15 @@
     <if test="videPaths.filePath!=null">and file_path=${videPaths.filePath}</if>
   </select>
 
+  <!--获取当前视频的下一部链接-->
+  <select id="findvideNextPath" resultType="com.soecode.lyf.entity.VidePathEntity">
+    SELECT <include refid="videPath"/>
+    FROM vide_path
+    WHERE id>#{vid}
+    GROUP BY id
+    LIMIT 1
+  </select>
+
   <delete id="delVideoForId">
     DELETE FROM vide_path WHERE id=#{vid}
   </delete>
