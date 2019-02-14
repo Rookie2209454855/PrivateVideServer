@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: javax.org.slf4j:slf4j-api:1.7.21">
     <CLASSES>
-      <root url="jar://D:/软件开发工具/repository/javax/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar!/" />
+      <root url="jar://D:/软件开发工具/依赖包/javax/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/软件开发工具/repository/javax/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21-javadoc.jar!/" />
+      <root url="jar://D:/软件开发工具/依赖包/javax/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/软件开发工具/repository/javax/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21-sources.jar!/" />
+      <root url="jar://D:/软件开发工具/依赖包/javax/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

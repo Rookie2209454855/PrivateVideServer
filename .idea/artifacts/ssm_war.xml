@@ -1,6 +1,12 @@
 <component name="ArtifactManager">
   <artifact type="war" build-on-make="true" name="ssm:war">
     <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>ssm</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="archive" name="ssm.war">
       <element id="artifact" artifact-name="ssm:war exploded" />
     </root>

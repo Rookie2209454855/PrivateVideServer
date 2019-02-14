@@ -132,7 +132,7 @@ public class VideServerController {
         System.out.print("sss");
         List<Vide> videList=iVidePathService.findvidePath(new Vide(id));
         Vide vide=videList.get(0);
-        String uri=vide.getFileIp()+":8081/"+vide.getFilePath().replace("\\","/");
+        String uri=vide.getFileIp()+vide.getFilePath().replace("\\","/");
         jsonObject.put("uri",uri);
         jsonObject.put("videoName",videList.get(0).getName());
         /*model.addAttribute("uri",uri);
@@ -151,7 +151,7 @@ public class VideServerController {
     public JSONObject showNextVideo(Long id)throws UnknownHostException{
         JSONObject jsonObject=new JSONObject();
         Vide vide=iVidePathService.findvideNextPath(id);
-        String uri=vide.getFileIp()+":8081/"+vide.getFilePath().replace("\\","/");
+        String uri=vide.getFileIp()+vide.getFilePath().replace("\\","/");
         jsonObject.put("id",vide.getId());
         jsonObject.put("uri",uri);
         jsonObject.put("videoName",vide.getName());
